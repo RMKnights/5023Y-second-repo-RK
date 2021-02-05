@@ -1,0 +1,32 @@
+---
+title: "Palmer Penguins"
+author: "Rebecca Knights"
+date: "05/02/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(palmerpenguins)
+library(plotly)
+```
+
+
+
+```{r pressure, echo=FALSE}
+penguin_graph <- ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
+  geom_point(aes(size = body_mass_g, 
+                 color = species),
+             alpha = 0.4) +
+  scale_color_manual(values = c("purple","orange","black")) +
+  theme_minimal() +
+  labs(x = "Bill Length (mm)",
+       y = "Bill Depth (mm)",
+       title = "Penguin Measurements")
+ggplotly(penguin_graph, tooltip = c("species"))
+plot(penguin_graph)
+```
+
+
